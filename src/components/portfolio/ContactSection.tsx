@@ -29,7 +29,7 @@ const ContactSection = () => {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: "YOUR_WEB3FORMS_KEY" /* 👉 web3forms.com/create → use nehhlizza@gmail.com */ // 👉 Get free key: web3forms.com/create → enter nehhlizza@gmail.com, // 👈 replace with key from web3forms.com
+          access_key: "51f57738-4a36-470b-9c62-f87c2e722e2a", /* 👉 web3forms.com/create → use nehhlizza@gmail.com */ // 👉 Get free key: web3forms.com/create → enter nehhlizza@gmail.com, // 👈 replace with key from web3forms.com
           name: formData.name,
           email: formData.email,
           subject: formData.subject || "Portfolio Contact Form",

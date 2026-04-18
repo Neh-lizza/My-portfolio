@@ -9,7 +9,10 @@ const navLinks = [
   { label: "Experience", href: "#experience", id: "experience" },
   { label: "Contact", href: "#contact", id: "contact" },
 ];
-
+<span className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-green-500/30 text-green-400 bg-green-500/10">
+  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+  Available
+</span>
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
