@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Lightbulb, Code2, Rocket, ArrowRight } from "lucide-react";
+import { Lightbulb, Code2, Rocket, ArrowRight, Terminal } from "lucide-react";
 
 const strategies = [
   {
@@ -11,7 +11,7 @@ const strategies = [
     bgColor: "from-primary/10 to-primary/5",
   },
   {
-    icon: Code2,
+    icon: Terminal,
     title: "Development & Build",
     description: "From architecture to deployment — clean code, modern technologies, zero shortcuts.",
     color: "text-accent",

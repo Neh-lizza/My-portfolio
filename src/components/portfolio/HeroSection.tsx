@@ -3,10 +3,10 @@ import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { ArrowDown, Mail, MapPin, Phone, FileText } from "lucide-react";
 
 const roles = [
-  "secure systems",
-  "scalable platforms",
+  "secure, not just functional",
   "real-time applications",
-  "production-grade APIs",
+  "APIs that survive production traffic",
+  "systems built to last",
 ];
 
 const HeroSection = () => {
@@ -81,13 +81,13 @@ const HeroSection = () => {
             <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none mb-6">
               Software Engineer<span className="text-gradient">.</span>
               <br />
-              <span className="text-muted-foreground text-3xl md:text-4xl lg:text-5xl font-light">Systems Builder<span className="text-gradient">.</span></span>
+              <span className="text-muted-foreground text-3xl md:text-4xl lg:text-5xl font-light">Systems Architect.<span className="text-gradient">.</span></span>
             </motion.h1>
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="mb-8">
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl lg:max-w-none">
                 I build{" "}<span className="font-mono text-primary font-medium">{text}<span className="animate-pulse">|</span></span>
               </p>
-              <p className="text-muted-foreground mt-3 max-w-xl lg:max-w-lg">Production-grade platforms that solve real problems — not just interfaces.</p>
+              <p className="text-muted-foreground mt-3 max-w-xl lg:max-w-lg">The one you call when it has to be right.</p>
             </motion.div>
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.45 }} className="flex items-center justify-center lg:justify-start gap-4 mb-8">
               <a href="#work" className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 transition-all glow-primary">See My Work</a>

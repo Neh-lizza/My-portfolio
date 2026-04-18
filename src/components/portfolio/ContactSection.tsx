@@ -65,16 +65,17 @@ const ContactSection = () => {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="text-center mb-14">
           <p className="font-mono text-sm text-primary mb-3 tracking-wider">{"// get in touch"}</p>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Let's Build Something <span className="text-gradient">Real</span>
-          </h2>
-          <p className="text-muted-foreground">Have a project in mind? Let's create something extraordinary.</p>
-        </motion.div>
+  Got something that needs to be <span className="text-gradient">built right?</span>
+</h2>
+         <p className="text-muted-foreground">
+  I'm selective about what I take on which means if we talk, I'm already interested.
+</p> </motion.div>
 
         <div className="grid md:grid-cols-2 gap-10 items-start">
           {/* Contact info */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="space-y-4">
             <p className="text-muted-foreground leading-relaxed mb-6">
-              I'm always open to interesting projects, freelance work, or just a good conversation about tech. Reach out — I respond within 24 hours.
+              Always open to interesting projects, freelance work, or just a good conversation about tech. Reach out! I respond within 24 hours.
             </p>
             {contactLinks.map(({ icon: Icon, label, href }) => (
               <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"
