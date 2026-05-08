@@ -68,7 +68,7 @@ const ContactSection = () => {
   Got something that needs to be <span className="text-gradient">built right?</span>
 </h2>
          <p className="text-muted-foreground">
-  I'm selective about what I take on which means if we talk, I'm already interested.
+  If we talk, I'm already interested ;).
 </p> </motion.div>
 
         <div className="grid md:grid-cols-2 gap-10 items-start">
