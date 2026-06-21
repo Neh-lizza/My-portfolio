@@ -3,23 +3,23 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Quote, ChevronLeft, ChevronRight, Star } from "lucide-react";
 
 const testimonials = [
+ {
+  name: "Titashipu Raissa",
+  role: "TechBelles, CTO",
+  text: "Neh's ability to architect complex systems while maintaining clean, readable code is exceptional. He delivered our entire real-time platform ahead of schedule with zero security incidents.",
+  rating: 5,
+},
+ {
+  name: "The Moon",
+  role: "The Moon Technology",
+  text: "Working with Neh was a game-changer. He doesn't just write code — he understands the business problem and builds solutions that actually scale. Our deployment time dropped by 60%.",
+  rating: 5,
+},
   {
-    name: "Jean-Pierre M.",
-    role: "CTO, JongoHub",
-    text: "Neh's ability to architect complex systems while maintaining clean, readable code is exceptional. He delivered our entire real-time platform ahead of schedule with zero security incidents.",
-    rating: 5,
-  },
-  {
-    name: "Sarah K.",
-    role: "Product Manager, TechStart",
-    text: "Working with Neh was a game-changer. He doesn't just write code — he understands the business problem and builds solutions that actually scale. Our deployment time dropped by 60%.",
-    rating: 5,
-  },
-  {
-    name: "David A.",
-    role: "Founder, SecureFlow",
-    text: "The Chrome extension Neh built for us handles sensitive auth flows flawlessly. His security-first mindset and attention to edge cases saved us from multiple potential vulnerabilities.",
-    rating: 5,
+  name: "David A.",
+  role: "Co-founder, FixMate",
+  text: "The Chrome extension Neh built for us handles sensitive auth flows flawlessly. His security-first mindset and attention to edge cases saved us from multiple potential vulnerabilities.",
+  rating: 5,
   },
 ];
 

@@ -5,7 +5,6 @@ import { ArrowDown, Mail, MapPin, Phone, FileText } from "lucide-react";
 const roles = [
   "secure, not just functional",
   "real-time applications",
-  "APIs that survive production traffic",
   "systems built to last",
 ];
 
@@ -81,7 +80,7 @@ const HeroSection = () => {
             <motion.h1 initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.15 }} className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none mb-6">
               Software Engineer<span className="text-gradient">.</span>
               <br />
-              <span className="text-muted-foreground text-3xl md:text-4xl lg:text-5xl font-light">Systems Architect.<span className="text-gradient">.</span></span>
+              <span className="text-muted-foreground text-3xl md:text-4xl lg:text-5xl font-light">Systems Architect<span className="text-gradient">.</span></span>
             </motion.h1>
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.3 }} className="mb-8">
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl lg:max-w-none">
@@ -132,12 +131,23 @@ const HeroSection = () => {
               {/* Card content sits on top */}
               <div className="rgb-inner">
                 <div className="rgb-badge">Full-Stack Engineer</div>
-                <div className="rgb-initials">NL</div>
+               <img
+  src="/profile.jpg"
+
+  style={{
+    width: "100%",
+    height: "150px",
+    objectFit: "cover",
+    objectPosition: "center top",
+    borderRadius: "12px",
+    marginBottom: "4px",
+  }}
+/>
                 <div className="rgb-name">Neh Lizza Ndikongsoh</div>
-                <div className="rgb-sub">Systems Builder · Douala 🇨🇲</div>
+                <div className="rgb-sub">Systems Builder · Cameroon</div>
                 <div className="rgb-divider" />
                 <div className="rgb-pills">
-                  {["React","Node.js","TypeScript","PostgreSQL","Security"].map(t => (
+                  {["#1","Node.js","Security"].map(t => (
                     <span key={t} className="rgb-pill">{t}</span>
                   ))}
                 </div>
