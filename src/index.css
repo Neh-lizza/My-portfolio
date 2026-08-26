@@ -200,3 +200,23 @@ body::after {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
+/* Solid background with radial dot grid */
+.dotted-bg-header {
+  background-color: #E5E5F7;
+  opacity: 0.8;
+  background-image: radial-gradient(circle, #444CF7 1.2px, transparent 1.2px);
+  background-size: 15px 15px;
+}
+
+/* TV Noise Canvas Overlay */
+canvas.noise-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.08; /* Adjust noise opacity */
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
