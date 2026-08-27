@@ -58,7 +58,7 @@ const CodeShowcase = () => {
   };
 
   return (
-    <section className="py-14 md:py-20 relative overflow-hidden">
+    <section className="py-24 md:py-32 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 hero-grid opacity-50" />
       
@@ -68,7 +68,7 @@ const CodeShowcase = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          className="text-center mb-16"
         >
           <p className="font-mono text-sm text-primary mb-3 tracking-wider">
             {"// what sets me apart"}

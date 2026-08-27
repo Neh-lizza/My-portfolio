@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Lightbulb, Code2, Rocket, ArrowRight, Terminal } from "lucide-react";
+import { Lightbulb, Code2, Rocket, ArrowRight } from "lucide-react";
 
 const strategies = [
   {
@@ -11,7 +11,7 @@ const strategies = [
     bgColor: "from-primary/10 to-primary/5",
   },
   {
-    icon: Terminal,
+    icon: Code2,
     title: "Development & Build",
     description: "From architecture to deployment — clean code, modern technologies, zero shortcuts.",
     color: "text-accent",
@@ -30,7 +30,7 @@ const StrategySection = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="py-14 md:py-20 relative overflow-hidden">
+    <section className="py-24 md:py-32 relative overflow-hidden">
       {/* Background shapes */}
       <motion.div
         animate={{ rotate: 45 }}
@@ -49,7 +49,7 @@ const StrategySection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="text-center mb-10"
+          className="text-center mb-16"
         >
           <p className="font-mono text-sm text-primary mb-3 tracking-wider">
             {"// my process"}

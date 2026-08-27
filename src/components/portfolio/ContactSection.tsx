@@ -29,7 +29,7 @@ const ContactSection = () => {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({
-          access_key: "51f57738-4a36-470b-9c62-f87c2e722e2a", /* 👉 web3forms.com/create → use nehhlizza@gmail.com */ // 👉 Get free key: web3forms.com/create → enter nehhlizza@gmail.com, // 👈 replace with key from web3forms.com
+          access_key: "YOUR_WEB3FORMS_KEY", // 👈 replace with key from web3forms.com
           name: formData.name,
           email: formData.email,
           subject: formData.subject || "Portfolio Contact Form",
@@ -60,22 +60,21 @@ const ContactSection = () => {
   ];
 
   return (
-    <section id="contact" className="py-14 md:py-20 relative">
+    <section id="contact" className="py-24 md:py-32 relative">
       <div className="max-w-5xl mx-auto px-6">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="text-center mb-14">
           <p className="font-mono text-sm text-primary mb-3 tracking-wider">{"// get in touch"}</p>
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
-  Got something that needs to be <span className="text-gradient">built right?</span>
-</h2>
-         <p className="text-muted-foreground">
-  If we talk, I'm already interested ;).
-</p> </motion.div>
+            Let's Build Something <span className="text-gradient">Real</span>
+          </h2>
+          <p className="text-muted-foreground">Have a project in mind? Let's create something extraordinary.</p>
+        </motion.div>
 
         <div className="grid md:grid-cols-2 gap-10 items-start">
           {/* Contact info */}
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5 }} className="space-y-4">
             <p className="text-muted-foreground leading-relaxed mb-6">
-              Always open to interesting projects, freelance work, or just a good conversation about tech. Reach out! I respond within 24 hours.
+              I'm always open to interesting projects, freelance work, or just a good conversation about tech. Reach out — I respond within 24 hours.
             </p>
             {contactLinks.map(({ icon: Icon, label, href }) => (
               <a key={label} href={href} target={href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer"

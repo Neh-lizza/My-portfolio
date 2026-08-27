@@ -11,7 +11,7 @@ const stats = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="py-14 md:py-20 relative">
+    <section id="about" className="py-24 md:py-32 relative">
       <motion.div
         animate={{ rotate: 360 }}
         transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
@@ -35,19 +35,17 @@ const AboutSection = () => {
             <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
                 Full-stack engineer and technical lead from{" "}
-                <span className="text-foreground font-medium">Cameroon</span>.
+                <span className="text-foreground font-medium">Douala, Cameroon</span>.
               </p>
               <p>
-                I specialize in building reliable and maintainable systems 
-                systems where reliability matters more than appearance.
-              
-                Powered by <span className="text-primary font-medium">curiosity</span>,{" "}
-                <span className="text-primary font-medium">consistency</span>, and{" "}
-                <span className="text-primary font-medium">obsession with reliability</span>.
+                I specialize in building reliable, secure, and maintainable systems
+                that scale — powered by <span className="text-primary font-medium">React</span>,{" "}
+                <span className="text-primary font-medium">Node.js</span>, and{" "}
+                <span className="text-primary font-medium">PostgreSQL</span>.
               </p>
               <p>
-                When I'm not building, I'm reading, or finding new ways to think about old problems.
-  I work best with people who care about what they ship. I like having my perspectives challenged.
+                When I'm not coding, I'm writing blogs, reading, or picking up
+                hands-on creative projects. I like having my perspectives challenged.
               </p>
             </div>
 
@@ -95,7 +93,6 @@ const AboutSection = () => {
           </motion.div>
         </div>
       </div>
-      
     </section>
   );
 };

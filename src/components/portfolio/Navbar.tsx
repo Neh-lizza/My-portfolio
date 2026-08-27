@@ -1,27 +1,19 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import useActiveSection from "@/hooks/useActiveSection";
 
 const navLinks = [
-  { label: "About", href: "#about", id: "about" },
-  { label: "Work", href: "#work", id: "work" },
-  { label: "Experience", href: "#experience", id: "experience" },
-  { label: "Contact", href: "#contact", id: "contact" },
+  { label: "About",      href: "#about",      id: "about" },
+  { label: "Work",       href: "#work",        id: "work" },
+  { label: "Experience", href: "#experience",  id: "experience" },
+  { label: "Contact",    href: "#contact",     id: "contact" },
 ];
-<span className="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono border border-green-500/30 text-green-400 bg-green-500/10">
-  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-  Available
-</span>
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isDark, setIsDark] = useState(true);
+  const [hoveredId, setHoveredId] = useState<string | null>(null);
   const activeSection = useActiveSection(navLinks.map((l) => l.id));
-
-  const toggleTheme = () => {
-    setIsDark(!isDark);
-    document.documentElement.classList.toggle("light");
-  };
 
   return (
     <motion.nav
@@ -31,63 +23,94 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 glass"
     >
       <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        <a href="#" className="text-xl font-bold text-gradient">
-          Neh<span className="text-primary">.</span>
-        </a>
 
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Logo */}
+        <a href="#" className="text-xl font-bold text-gradient">
+  Neh<span className="text-primary">.</span>
+</a>
+
+        {/* Desktop nav */}
+        <div className="hidden md:flex items-center gap-1" style={{ position: "relative" }}>
+
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className={`text-sm transition-colors duration-300 relative ${
-                activeSection === link.id
-                  ? "text-primary font-medium"
-                  : "text-muted-foreground hover:text-foreground"
-              }`}
+              onMouseEnter={() => setHoveredId(link.id)}
+              onMouseLeave={() => setHoveredId(null)}
+              style={{
+                position: "relative",
+                padding: "0.38em 1.1em",
+                borderRadius: 8,
+                fontSize: "0.875rem",
+                fontWeight: activeSection === link.id ? 600 : 400,
+                color: activeSection === link.id
+                  ? "#ffffff"
+                  : hoveredId === link.id
+                  ? "#ffffff"
+                  : "rgba(255,255,255,0.55)",
+                textDecoration: "none",
+                transition: "color 0.2s",
+                zIndex: 2,
+              }}
             >
-              {link.label}
-              {activeSection === link.id && (
+              {/* Sliding hover background pill */}
+              {hoveredId === link.id && (
                 <motion.span
-                  layoutId="nav-underline"
-                  className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
-                  transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  layoutId="nav-hover-pill"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                  style={{
+                    position: "absolute",
+                    inset: 0,
+                    borderRadius: 8,
+                    background: "rgba(255,255,255,0.09)",
+                    border: "1px solid rgba(255,255,255,0.12)",
+                    zIndex: -1,
+                  }}
                 />
               )}
+
+              {/* Active section gradient underline */}
+              {activeSection === link.id && (
+                <motion.span
+                  layoutId="nav-active-line"
+                  transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  style={{
+                    position: "absolute",
+                    bottom: 0,
+                    left: "12%",
+                    right: "12%",
+                    height: 2,
+                    borderRadius: 2,
+                    background: "linear-gradient(90deg, hsl(217,91%,60%), hsl(262,83%,68%))",
+                    boxShadow: "0 0 8px hsla(217,91%,60%,0.7)",
+                  }}
+                />
+              )}
+
+              {link.label}
             </a>
           ))}
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-lg glass text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Toggle theme"
-          >
-            {isDark ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
+
+          
           <a
             href="#contact"
-            className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity"
+            className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity ml-2"
           >
             Let's Talk
           </a>
         </div>
 
         {/* Mobile toggle */}
-        <div className="flex items-center gap-3 md:hidden">
-          <button
-            onClick={toggleTheme}
-            className="p-2 rounded-lg glass text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Toggle theme"
-          >
-            {isDark ? <Sun size={16} /> : <Moon size={16} />}
-          </button>
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="text-foreground"
-          >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="text-foreground md:hidden"
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
 
       {/* Mobile menu */}
@@ -114,6 +137,13 @@ const Navbar = () => {
                   {link.label}
                 </a>
               ))}
+              
+              <a
+                href="#contact"
+                className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity w-fit"
+              >
+                Let's Talk
+              </a>
             </div>
           </motion.div>
         )}

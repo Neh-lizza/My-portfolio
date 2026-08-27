@@ -26,57 +26,16 @@ export const ScrollToTop = () => {
   return (
     <AnimatePresence>
       {visible && (
-        <motion.div
+        <motion.button
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.5 }}
-          className="fixed bottom-8 right-8 z-50"
-          style={{ width: 48, height: 48 }}
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-8 right-8 z-50 p-3 rounded-xl glass border border-primary/20 text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300 glow-primary"
+          aria-label="Scroll to top"
         >
-          {/* Rotating gradient border wrapper */}
-          <div style={{
-            position: "relative",
-            width: 48,
-            height: 48,
-            borderRadius: 14,
-            padding: 2,
-            overflow: "hidden",
-            cursor: "pointer",
-          }}
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            aria-label="Scroll to top"
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && window.scrollTo({ top: 0, behavior: "smooth" })}
-          >
-            {/* Spinning conic gradient border */}
-            <div style={{
-              position: "absolute",
-              inset: "-60%",
-              background: "conic-gradient(from 0deg, transparent 0deg, transparent 50deg, hsl(217,91%,60%) 90deg, hsl(262,83%,70%) 130deg, hsl(190,90%,60%) 155deg, transparent 190deg, transparent 360deg)",
-              animation: "scrollBtnSpin 2.5s linear infinite",
-              borderRadius: "50%",
-            }} />
-            {/* Inner button */}
-            <div style={{
-              position: "relative",
-              zIndex: 2,
-              width: "100%",
-              height: "100%",
-              borderRadius: 12,
-              background: "hsl(222,47%,7%)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "hsl(217,91%,65%)",
-              transition: "background 0.2s",
-            }}
-              className="hover:bg-primary/20"
-            >
-              <ArrowUp size={18} />
-            </div>
-          </div>
-        </motion.div>
+          <ArrowUp size={20} />
+        </motion.button>
       )}
     </AnimatePresence>
   );

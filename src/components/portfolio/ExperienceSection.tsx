@@ -19,14 +19,14 @@ const experiences = [
 
 const ExperienceSection = () => {
   return (
-    <section id="experience" className="py-14 md:py-20 relative">
+    <section id="experience" className="py-24 md:py-32 relative">
       <div className="max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="mb-10"
+          className="mb-16"
         >
           <p className="font-mono text-sm text-primary mb-3 tracking-wider">
             {"// career path"}

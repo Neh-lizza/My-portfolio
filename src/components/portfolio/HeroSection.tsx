@@ -1,23 +1,77 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { ArrowDown, Mail, MapPin, Phone, FileText } from "lucide-react";
+import { ArrowDown, Mail, Phone, FileText } from "lucide-react";
 
+/* ── Film grain noise canvas ───────────────────────────────────────────── */
+const Noise = () => {
+  const grainRef = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const canvas = grainRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d", { alpha: true });
+    if (!ctx) return;
+    let frame = 0;
+    let animId: number;
+    const SIZE = 1024;
+    const resize = () => {
+      canvas.width = SIZE;
+      canvas.height = SIZE;
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+    };
+    const draw = () => {
+      const img = ctx.createImageData(SIZE, SIZE);
+      const data = img.data;
+      for (let i = 0; i < data.length; i += 4) {
+        const v = Math.random() * 255;
+        data[i] = data[i + 1] = data[i + 2] = v;
+        data[i + 3] = 18;
+      }
+      ctx.putImageData(img, 0, 0);
+    };
+    const loop = () => {
+      if (frame % 2 === 0) draw();
+      frame++;
+      animId = requestAnimationFrame(loop);
+    };
+    window.addEventListener("resize", resize);
+    resize();
+    loop();
+    return () => {
+      cancelAnimationFrame(animId);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
+  return (
+    <canvas
+      ref={grainRef}
+      className="pointer-events-none absolute inset-0 w-full h-full"
+      style={{ imageRendering: "pixelated", zIndex: 3, opacity: 1 }}
+    />
+  );
+};
+
+/* ── Hero ──────────────────────────────────────────────────────────────── */
 const HeroSection = () => {
   const [text, setText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [cvClicked, setCvClicked] = useState(false);
+  const [typedOnce, setTypedOnce] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   const role = "secure, not just functional";
 
-  // Typewriter loop for a single phrase
+  /* Typewriter – runs once */
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    if (typedOnce) return; // do nothing after first complete cycle
 
+    let timer: ReturnType<typeof setTimeout>;
     if (!isDeleting && text === role) {
-      timer = setTimeout(() => setIsDeleting(true), 2000);
+      // finished typing once → stop here (no delete, no loop)
+      setTypedOnce(true);
     } else if (isDeleting && text === "") {
-      setIsDeleting(false);
+      // should not happen in "once" mode, but guard anyway
+      setTypedOnce(true);
     } else {
       timer = setTimeout(() => {
         setText((prev) =>
@@ -27,22 +81,22 @@ const HeroSection = () => {
         );
       }, isDeleting ? 40 : 80);
     }
-
     return () => clearTimeout(timer);
-  }, [text, isDeleting]);
+  }, [text, isDeleting, typedOnce]);
 
+  /* Parallax scroll */
   const { scrollY } = useScroll();
   const rawY = useTransform(scrollY, [0, 600], [0, -120]);
   const smoothY = useSpring(rawY, { stiffness: 60, damping: 20 });
-  const rawOpacity = useTransform(scrollY, [0, 400], [1, 0]);
-  const smoothOpacity = useSpring(rawOpacity, { stiffness: 60, damping: 20 });
-  const rawScale = useTransform(scrollY, [0, 400], [1, 0.92]);
-  const smoothScale = useSpring(rawScale, { stiffness: 60, damping: 20 });
+  const rawOp = useTransform(scrollY, [0, 400], [1, 0]);
+  const smoothOp = useSpring(rawOp, { stiffness: 60, damping: 20 });
+  const rawSc = useTransform(scrollY, [0, 400], [1, 0.92]);
+  const smoothSc = useSpring(rawSc, { stiffness: 60, damping: 20 });
 
+  /* CV */
   const handleCvClick = () => {
     if (cvClicked) return;
     setCvClicked(true);
-    // 👉 Replace YOUR_GOOGLE_DRIVE_FILE_ID with your actual file ID
     window.open(
       "https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/view?usp=sharing",
       "_blank"
@@ -86,16 +140,27 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center overflow-hidden pattern-background"
+      className="relative min-h-screen flex items-center overflow-hidden hero-dot-bg"
     >
-      {/* No floating shapes anymore — cleaned hero */}
+      {/* Noise grain overlay */}
+      <Noise />
 
+      {/* Radial vignette */}
+      <div
+        className="pointer-events-none absolute inset-0 z-[2]"
+        style={{
+          background:
+            "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.45) 100%)",
+        }}
+      />
+
+      {/* Parallax content */}
       <motion.div
-        style={{ y: smoothY, opacity: smoothOpacity, scale: smoothScale }}
+        style={{ y: smoothY, opacity: smoothOp, scale: smoothSc }}
         className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-28"
       >
         <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
-          {/* LEFT: Text + Info */}
+          {/* ── LEFT ── */}
           <div className="flex-1 text-center lg:text-left">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -111,11 +176,21 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none mb-6"
+              className="font-bold tracking-tight leading-none mb-6"
+              style={{
+                color: "#ffffff",
+                fontSize: "clamp(2.25rem, 5vw, 4rem)", // reduced size
+              }}
             >
               Software Engineer<span className="text-gradient">.</span>
               <br />
-              <span className="text-muted-foreground text-3xl md:text-4xl lg:text-5xl font-light">
+              <span
+                className="font-light"
+                style={{
+                  color: "rgba(255,255,255,0.45)",
+                  fontSize: "clamp(1.25rem, 3vw, 2rem)", // reduced subline
+                }}
+              >
                 Systems Architect<span className="text-gradient">.</span>
               </span>
             </motion.h1>
@@ -126,53 +201,25 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="mb-8"
             >
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl lg:max-w-none">
+              <p
+                className="text-lg md:text-xl"
+                style={{ color: "rgba(255,255,255,0.55)" }}
+              >
                 I build{" "}
                 <span className="font-mono text-primary font-medium">
                   {text}
-                  <span className="animate-pulse">|</span>
+                  {!typedOnce && <span className="animate-pulse">|</span>}
                 </span>
               </p>
-              <p className="text-muted-foreground mt-3 max-w-xl lg:max-w-lg">
+              <p
+                className="mt-3 max-w-xl lg:max-w-lg"
+                style={{ color: "rgba(255,255,255,0.45)" }}
+              >
                 The one you call when it has to be right.
               </p>
             </motion.div>
 
-            {/* Name + Contact Info Block */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.45 }}
-              className="glass rounded-xl px-6 py-4 text-center lg:text-left w-full max-w-md mx-auto lg:mx-0 mb-8"
-            >
-              <h3 className="text-lg font-bold text-foreground">
-                Neh Lizza Ndikongsoh
-              </h3>
-              <p className="text-xs text-primary font-mono mb-3">
-                Full-Stack Developer
-              </p>
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-center lg:justify-start gap-2 text-xs text-muted-foreground">
-                  <Mail size={12} className="text-primary" />
-                  <a
-                    href="mailto:nehhlizza@gmail.com"
-                    className="hover:text-primary transition-colors"
-                  >
-                    nehhlizza@gmail.com
-                  </a>
-                </div>
-                <div className="flex items-center justify-center lg:justify-start gap-2 text-xs text-muted-foreground">
-                  <Phone size={12} className="text-primary" />
-                  <span>+237 651 354 402</span>
-                </div>
-                <div className="flex items-center justify-center lg:justify-start gap-2 text-xs text-muted-foreground">
-                  <MapPin size={12} className="text-primary" />
-                  <span>Douala, Cameroon</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* CTA Buttons */}
+            {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -187,13 +234,17 @@ const HeroSection = () => {
               </a>
               <a
                 href="#contact"
-                className="px-6 py-3 rounded-lg border border-border text-foreground font-medium hover:bg-secondary transition-all"
+                className="px-6 py-3 rounded-lg font-medium hover:bg-white/10 transition-all"
+                style={{
+                  border: "1px solid rgba(255,255,255,0.2)",
+                  color: "rgba(255,255,255,0.8)",
+                }}
               >
                 Let's Talk
               </a>
             </motion.div>
 
-            {/* Social Links + CV */}
+            {/* Socials + CV */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -231,7 +282,6 @@ const HeroSection = () => {
                 <div className="cv-circle">
                   <svg
                     className="cv-ico cv-arr"
-                    aria-hidden="true"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -253,19 +303,32 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* RIGHT: Only Profile Picture in a Circle */}
+          {/* ── RIGHT — circular profile photo ── */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="relative flex-shrink-0 flex flex-col items-center"
           >
-            <div className="relative w-56 h-56 md:w-64 md:h-64 rounded-full overflow-hidden border-2 border-primary/30 shadow-2xl">
+            <div
+              style={{
+                width: 260,
+                height: 260,
+                borderRadius: "50%",
+                overflow: "hidden",
+                flexShrink: 0,
+              }}
+            >
               <img
                 src="/profile.jpg"
                 alt="Neh Lizza Ndikongsoh"
-                className="w-full h-full object-cover"
-                style={{ objectPosition: "center top" }}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  objectPosition: "center top",
+                  display: "block",
+                }}
               />
             </div>
           </motion.div>
@@ -277,38 +340,26 @@ const HeroSection = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-primary transition-colors"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 hover:text-primary transition-colors z-10"
+        style={{ color: "rgba(255,255,255,0.4)" }}
       >
         <ArrowDown size={20} className="animate-bounce" />
       </motion.a>
 
       <style>{`
-        /* ── PATTERN BACKGROUND (black with white dots) ── */
-        .pattern-background {
-          position: relative;
-          overflow: hidden;
+        /* ── DOT BACKGROUND ── */
+        .hero-dot-bg {
           background-color: #000000;
-        }
-
-        .pattern-background::before {
-          content: "";
-          position: absolute;
-          inset: -100%;
-          transform: rotate(45deg);
-          transform-origin: center;
-          background-color: #000000;
-          opacity: 0.6;
-          background-image: radial-gradient(circle, #ffffff 2.16px, transparent 2.16px);
-          background-size: 27px 27px;
-          pointer-events: none;
+          background-image: radial-gradient(circle, #ffffff 1.4px, transparent 1.4px);
+          background-size: 22px 22px;
         }
 
         /* ── ISO SOCIALS ── */
         .iso-social { position: relative; cursor: pointer; }
-        .iso-icon { width:44px;height:44px;border-radius:50%;display:flex;justify-content:center;align-items:center;background:hsla(222,40%,12%,0.6);border:1px solid hsla(215,25%,25%,0.45);backdrop-filter:blur(12px);transition:all 0.3s ease;box-shadow:inset 0 0 14px rgba(255,255,255,0.06),0 4px 10px rgba(0,0,0,0.25);color:var(--sc); }
+        .iso-icon { width:44px;height:44px;border-radius:50%;display:flex;justify-content:center;align-items:center;background:hsla(0,0%,100%,0.08);border:1px solid hsla(0,0%,100%,0.15);backdrop-filter:blur(12px);transition:all 0.3s ease;color:var(--sc); }
         .iso-sh { position:absolute;inset:0;border-radius:50%;border:1px solid var(--sc);opacity:0;transition:all 0.3s ease;pointer-events:none; }
-        .iso-lbl { opacity:0;position:absolute;top:-30px;left:50%;transform:translateX(-50%);font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--sc);background:hsla(222,40%,10%,0.9);border:1px solid hsla(215,25%,25%,0.5);padding:3px 8px;border-radius:6px;white-space:nowrap;transition:all 0.3s ease;pointer-events:none; }
-        .iso-social:hover .iso-icon { transform:translate(5px,-5px);box-shadow:inset 0 0 14px rgba(255,255,255,0.1),0 8px 22px rgba(0,0,0,0.3); }
+        .iso-lbl { opacity:0;position:absolute;top:-30px;left:50%;transform:translateX(-50%);font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--sc);background:rgba(0,0,0,0.85);border:1px solid rgba(255,255,255,0.1);padding:3px 8px;border-radius:6px;white-space:nowrap;transition:all 0.3s ease;pointer-events:none; }
+        .iso-social:hover .iso-icon { transform:translate(5px,-5px); }
         .iso-social:hover .iso-lbl { opacity:1;top:-36px; }
         .iso-social:hover .iso-sh1 { opacity:0.2;transform:translate(2px,-2px); }
         .iso-social:hover .iso-sh2 { opacity:0.35;transform:translate(5px,-5px); }
@@ -316,7 +367,7 @@ const HeroSection = () => {
 
         /* ── CV BUTTON ── */
         .cv-wrap { background:transparent;border:2px solid hsla(217,91%,60%,0.65);display:flex;align-items:center;border-radius:50px;width:178px;cursor:pointer;transition:all 0.4s ease;padding:5px;position:relative;user-select:none; }
-        .cv-wrap::before { content:"";position:absolute;top:0;bottom:0;left:0;right:0;background:#fff;width:8px;height:8px;transition:all 0.4s ease;border-radius:100%;margin:auto;opacity:0;visibility:hidden; }
+        .cv-wrap::before { content:"";position:absolute;inset:0;background:#fff;width:8px;height:8px;transition:all 0.4s ease;border-radius:100%;margin:auto;opacity:0;visibility:hidden; }
         .cv-circle { height:44px;width:44px;border-radius:50%;background:hsl(217,91%,60%);display:flex;justify-content:center;align-items:center;transition:all 0.4s ease;position:relative;overflow:hidden;flex-shrink:0; }
         .cv-circle::before { content:"";position:absolute;left:0;top:0;background:hsl(217,71%,44%);width:100%;height:0;transition:all 0.4s ease; }
         .cv-ico { color:#fff;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transition:all 0.3s ease;z-index:2; }
