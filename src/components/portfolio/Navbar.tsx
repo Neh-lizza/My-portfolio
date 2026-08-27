@@ -96,12 +96,7 @@ const Navbar = () => {
           ))}
 
           
-          <a
-            href="#contact"
-            className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity ml-2"
-          >
-            Let's Talk
-          </a>
+          
         </div>
 
         {/* Mobile toggle */}
@@ -138,12 +133,7 @@ const Navbar = () => {
                 </a>
               ))}
               
-              <a
-                href="#contact"
-                className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-sm font-medium hover:opacity-90 transition-opacity w-fit"
-              >
-                Let's Talk
-              </a>
+              Let's Talk
             </div>
           </motion.div>
         )}

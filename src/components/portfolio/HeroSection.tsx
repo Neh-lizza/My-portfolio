@@ -168,7 +168,7 @@ const HeroSection = () => {
               transition={{ duration: 0.6 }}
             >
               <p className="font-mono text-sm text-primary mb-6 tracking-wider">
-                {"// full-stack engineer"}
+                {"// Innovating Al-Powered Solutions | Experienced Full Stack Developerl| Data Enthusiast "} 
               </p>
             </motion.div>
 
