@@ -41,7 +41,7 @@ const AboutSection = () => {
                 I specialize in building reliable, secure, and maintainable systems
                 that scale — powered by <span className="text-primary font-medium">React</span>,{" "}
                 <span className="text-primary font-medium">Node.js</span>, and{" "}
-                <span className="text-primary font-medium">PostgreSQL</span>.
+                <span className="text-primary font-medium">PostgreSQL </span>.
               </p>
               <p>
                 When I'm not coding, I'm writing blogs, reading, or picking up
