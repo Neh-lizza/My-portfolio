@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   motion,
   useScroll,
@@ -77,10 +77,8 @@ const Noise = () => {
   );
 };
 
-/* ── Hero ──────────────────────────────────────────────────────────────── */
+/* ── Hero Section ──────────────────────────────────────────────────────── */
 const HeroSection = () => {
-  const [cvClicked, setCvClicked] = useState(false);
-
   const sectionRef = useRef<HTMLElement>(null);
 
   /* ── Parallax scroll ── */
@@ -104,28 +102,14 @@ const HeroSection = () => {
     damping: 20,
   });
 
-  /* ── CV ── */
-  const handleCvClick = () => {
-    if (cvClicked) return;
-
-    setCvClicked(true);
-
-    window.open(
-      "https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/view?usp=sharing",
-      "_blank"
-    );
-
-    setTimeout(() => {
-      setCvClicked(false);
-    }, 4200);
-  };
-
-  /* ── Socials ── */
+  /* ── Social Links ── */
   const socials = [
     {
       label: "GitHub",
       href: "https://github.com/Neh-lizza/",
       color: "#e2e8f0",
+      tooltipBg: "#334155",
+      tooltipColor: "#ffffff",
       icon: (
         <svg
           viewBox="0 0 98 96"
@@ -137,11 +121,12 @@ const HeroSection = () => {
         </svg>
       ),
     },
-
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/in/neh-lizza/",
       color: "#0a66c2",
+      tooltipBg: "#0a66c2",
+      tooltipColor: "#ffffff",
       icon: (
         <svg
           viewBox="0 0 24 24"
@@ -153,19 +138,20 @@ const HeroSection = () => {
         </svg>
       ),
     },
-
     {
       label: "Email",
       href: "mailto:nehhlizza@gmail.com",
       color: "#ea4335",
+      tooltipBg: "#ea4335",
+      tooltipColor: "#ffffff",
       icon: (
         <svg
           viewBox="0 0 24 24"
           fill="currentColor"
-          width="24"
-          height="24"
+          width="22"
+          height="22"
         >
-          <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.272H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" />
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
         </svg>
       ),
     },
@@ -184,54 +170,12 @@ const HeroSection = () => {
         className="pointer-events-none absolute inset-0 z-[2]"
         style={{
           background:
-            "radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.45) 100%)",
+            "radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.72) 100%)",
         }}
       />
 
-      {/* ================================================================
-          TOP LEFT TAGLINE
-          Independent from the main hero content
-      ================================================================= */}
-      <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{
-          duration: 0.6,
-          delay: 0.15,
-        }}
-        className="
-          absolute
-          top-28
-          left-6
-          lg:left-[max(2rem,calc((100vw-80rem)/2))]
-          z-20
-          text-left
-          max-w-[90vw]
-        "
-      >
-        <h1
-          className="font-bold tracking-tight leading-none"
-          style={{
-            color: "#ffffff",
-            fontSize: "clamp(1.1rem, 1.7vw, 1.8rem)",
-          }}
-        >
-          // Innovating AI-Powered Solutions | Full Stack Developer | Data
-          Enthusiast
-          <span className="text-gradient">.</span>
-        </h1>
-
-        <div
-          className="font-light mt-2"
-          style={{
-            color: "rgba(255,255,255,0.45)",
-            fontSize: "clamp(1rem, 1.5vw, 1.5rem)",
-          }}
-        >
-          Systems Architect
-          <span className="text-gradient">.</span>
-        </div>
-      </motion.div>
+      {/* ── Background Glow Effect ── */}
+      <div className="star-glow" />
 
       {/* ── Main hero content ── */}
       <motion.div
@@ -240,321 +184,221 @@ const HeroSection = () => {
           opacity: smoothOp,
           scale: smoothSc,
         }}
-        className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-40"
+        className="relative z-10 max-w-7xl mx-auto px-6 w-full pt-20 pb-12"
       >
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] items-end gap-10">
 
-          {/* ── LEFT ── */}
-          <div className="flex-1 text-center lg:text-left">
-
-            {/* Spacer — tagline is now outside this content */}
-            <div className="h-16 lg:h-20" />
-
-            {/* Description */}
+          {/* ── LEFT SIDE ── */}
+          <div className="flex flex-col text-left lg:pb-12">
+            
+            {/* Eyebrow */}
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 30,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.6,
-                delay: 0.3,
-              }}
-              className="mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15 }}
+              className="text-[12px] tracking-[0.18em] uppercase mb-[18px]"
+              style={{ color: "rgba(255, 255, 255, 0.55)" }}
             >
-              <p
-                className="mt-3 max-w-xl lg:max-w-lg"
-                style={{
-                  color: "rgba(255,255,255,0.45)",
-                }}
-              >
-                The one you call when it has to be right.
-              </p>
+              // <span className="text-white">Software Engineer</span>
             </motion.div>
 
-            {/* ── CTAs ── */}
+            {/* Main Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25 }}
+              className="font-extrabold tracking-tight leading-[0.92] max-w-[650px]"
+              style={{ fontSize: "clamp(3.2rem, 6vw, 5.8rem)" }}
+            >
+              Neh
+              <span
+                className="block text-transparent"
+                style={{ WebkitTextStroke: "1px rgba(255, 255, 255, 0.5)" }}
+              >
+                Lizza.
+              </span>
+            </motion.h1>
+
+            {/* Accent Callout Text (Increased size & distinct font emphasis) */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="mt-6 max-w-[520px] text-[18px] sm:text-[20px] font-semibold text-white/90 leading-snug tracking-wide font-sans"
+            >
+              The one you call when it has to be right.
+            </motion.p>
+
+            {/* Action Buttons */}
             <motion.div
-              initial={{
-                opacity: 0,
-                y: 30,
-              }}
-              animate={{
-                opacity: 1,
-                y: 0,
-              }}
-              transition={{
-                duration: 0.6,
-                delay: 0.55,
-              }}
-              className="
-                flex
-                items-center
-                justify-center
-                lg:justify-start
-                gap-4
-                mb-8
-              "
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.45 }}
+              className="flex flex-wrap gap-3 mt-8 mb-8"
             >
               <a
                 href="#work"
-                className="
-                  px-6
-                  py-3
-                  rounded-lg
-                  bg-primary
-                  text-primary-foreground
-                  font-medium
-                  hover:opacity-90
-                  transition-all
-                  glow-primary
-                "
+                className="inline-flex items-center justify-center min-w-[140px] px-6 py-[14px] rounded-[30px] bg-[#233D4D] text-white text-[13px] font-bold tracking-[0.02em] hover:-translate-y-[3px] hover:bg-[#1d323f] transition-all duration-300"
               >
                 See My Work
               </a>
-
               <a
                 href="#contact"
-                className="
-                  px-6
-                  py-3
-                  rounded-lg
-                  font-medium
-                  hover:bg-white/10
-                  transition-all
-                "
-                style={{
-                  border: "1px solid rgba(255,255,255,0.2)",
-                  color: "rgba(255,255,255,0.8)",
-                }}
+                className="inline-flex items-center justify-center min-w-[140px] px-6 py-[14px] rounded-[30px] bg-[rgba(255,255,255,0.04)] text-white text-[13px] font-bold tracking-[0.02em] border border-[rgba(255,255,255,0.22)] hover:-translate-y-[3px] hover:border-[rgba(255,255,255,0.5)] hover:bg-[rgba(255,255,255,0.08)] transition-all duration-300"
               >
                 Let's Talk
               </a>
             </motion.div>
 
-            {/* ── Socials + CV ── */}
+            {/* ── Social Icons + CV Button ── */}
             <motion.div
-              initial={{
-                opacity: 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              transition={{
-                duration: 0.6,
-                delay: 0.65,
-              }}
-              className="
-                flex
-                items-center
-                justify-center
-                lg:justify-start
-                gap-3
-                flex-wrap
-              "
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.55 }}
+              className="flex items-center gap-4 flex-wrap pt-2"
             >
-              {socials.map(
-                ({
-                  label,
-                  href,
-                  color,
-                  icon,
-                }) => (
-                  <div
-                    key={label}
-                    className="iso-social"
-                    style={
-                      {
-                        "--sc": color,
-                      } as React.CSSProperties
-                    }
+              {socials.map(({ label, href, color, tooltipBg, tooltipColor, icon }) => (
+                <div
+                  key={label}
+                  className="iso-social"
+                  style={
+                    {
+                      "--sc": color,
+                      "--t-bg": tooltipBg,
+                      "--t-cl": tooltipColor,
+                    } as React.CSSProperties
+                  }
+                >
+                  <span className="iso-sh iso-sh1" />
+                  <span className="iso-sh iso-sh2" />
+                  <span className="iso-sh iso-sh3" />
+
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
                   >
-                    <span className="iso-sh iso-sh1" />
-                    <span className="iso-sh iso-sh2" />
-                    <span className="iso-sh iso-sh3" />
+                    <div className="iso-icon">{icon}</div>
+                  </a>
 
-                    <a
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={label}
-                    >
-                      <div className="iso-icon">
-                        {icon}
-                      </div>
-                    </a>
-
-                    <div className="iso-lbl">
-                      {label}
-                    </div>
-                  </div>
-                )
-              )}
-
-              {/* ── CV BUTTON ── */}
-              <div
-                className={`cv-wrap${
-                  cvClicked ? " cv-on" : ""
-                }`}
-                onClick={handleCvClick}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(e) =>
-                  e.key === "Enter" &&
-                  handleCvClick()
-                }
-              >
-                <div className="cv-circle">
-                  <svg
-                    className="cv-ico cv-arr"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke="currentColor"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      d="M12 19V5m0 14-4-4m4 4 4-4"
-                    />
-                  </svg>
-
-                  <FileText
-                    className="cv-ico cv-doc"
-                    size={18}
-                  />
-
-                  <div className="cv-sq" />
+                  {/* Playful Speech-Bubble Tooltip */}
+                  <div className="doodle-hybrid-tooltip">{label}</div>
                 </div>
+              ))}
 
-                <p className="cv-txt cv-dl">
-                  Download CV
-                </p>
-
-                <p className="cv-txt cv-op">
-                  Opening!
-                </p>
-              </div>
+              {/* Minimalist Glowing Border CV Button */}
+              <a
+                href="https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.15)] text-white text-[13px] font-medium tracking-wide backdrop-blur-md transition-all duration-300 hover:border-[#233D4D] hover:bg-[rgba(35,61,77,0.2)] hover:shadow-[0_0_20px_rgba(35,61,77,0.4)]"
+              >
+                <FileText size={16} className="text-white/70 group-hover:text-white transition-colors" />
+                <span>Download CV</span>
+                <ArrowDown size={14} className="text-white/50 group-hover:text-white group-hover:translate-y-0.5 transition-all" />
+              </a>
             </motion.div>
+
+            {/* Description Text (Positioned Below Icons) */}
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.65 }}
+              className="mt-6 max-w-[480px] text-[14px] leading-[1.7] font-normal"
+              style={{ color: "rgba(255, 255, 255, 0.55)" }}
+            >
+              Building intelligent systems, full-stack applications, and technology that solves real problems.
+            </motion.p>
+
           </div>
 
-          {/* ============================================================
-              RIGHT — PROFILE PHOTO
-          ============================================================= */}
+          {/* ── RIGHT SIDE (Empty Arch Frame) ── */}
           <motion.div
-            initial={{
-              opacity: 0,
-              scale: 0.8,
-            }}
-            animate={{
-              opacity: 1,
-              scale: 1,
-            }}
-            transition={{
-              duration: 0.8,
-              delay: 0.3,
-            }}
-            className="
-              relative
-              flex-shrink-0
-              flex
-              flex-col
-              items-center
-            "
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative flex-shrink-0 flex justify-center items-center w-full lg:w-auto"
           >
-            <div
-              style={{
-                width: 260,
-                height: 260,
-                borderRadius: "50%",
-                overflow: "hidden",
-                flexShrink: 0,
-              }}
-            >
-              <img
-                src="/profile.jpg"
-                alt="Neh Lizza Ndikongsoh"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  objectPosition: "center top",
-                  display: "block",
-                }}
-              />
-            </div>
+            <div className="arch-frame" />
           </motion.div>
+
         </div>
       </motion.div>
 
       {/* ── Scroll indicator ── */}
       <motion.a
-        href="#about"
-        initial={{
-          opacity: 0,
-        }}
-        animate={{
-          opacity: 1,
-        }}
-        transition={{
-          delay: 1.2,
-        }}
-        className="
-          absolute
-          bottom-8
-          left-1/2
-          -translate-x-1/2
-          hover:text-primary
-          transition-colors
-          z-10
-        "
-        style={{
-          color: "rgba(255,255,255,0.4)",
-        }}
+        href="#work"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.2 }}
+        className="absolute bottom-7 left-1/2 -translate-x-1/2 hover:text-primary transition-colors z-20"
+        style={{ color: "rgba(255,255,255,0.4)" }}
       >
-        <ArrowDown
-          size={20}
-          className="animate-bounce"
-        />
+        <ArrowDown size={20} className="animate-bounce" />
       </motion.a>
 
-      {/* ================================================================
-          CUSTOM STYLES
-      ================================================================= */}
+      {/* ── Styles ── */}
       <style>{`
-        /* ── DOT BACKGROUND ── */
+        /* ── Hero Dot Background ── */
         .hero-dot-bg {
           background-color: #000000;
-          background-image:
-            radial-gradient(
-              circle,
-              #ffffff 1.4px,
-              transparent 1.4px
-            );
-          background-size: 22px 22px;
+          background-image: radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.28) 1px,
+            transparent 1px
+          );
+          background-size: 24px 24px;
         }
 
-        /* ── ISO SOCIALS ── */
+        /* ── Glow Effect ── */
+        .star-glow {
+          position: absolute;
+          width: 500px;
+          height: 500px;
+          right: 20%;
+          top: 50%;
+          transform: translateY(-50%);
+          border-radius: 50%;
+          background: radial-gradient(
+            circle,
+            rgba(35, 61, 77, 0.6),
+            transparent 70%
+          );
+          filter: blur(60px);
+          z-index: 1;
+          pointer-events: none;
+        }
+
+        /* ── Arch Dome Frame ── */
+        .arch-frame {
+          position: relative;
+          width: 100%;
+          max-width: 440px;
+          height: 72vh;
+          background: #233D4D;
+          border-radius: 240px 240px 0 0;
+          overflow: hidden;
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        /* ── ISO Socials ── */
         .iso-social {
           position: relative;
           cursor: pointer;
         }
 
         .iso-icon {
-          width: 44px;
-          height: 44px;
+          width: 46px;
+          height: 46px;
           border-radius: 50%;
           display: flex;
           justify-content: center;
           align-items: center;
-          background: hsla(0, 0%, 100%, 0.08);
-          border: 1px solid hsla(0, 0%, 100%, 0.15);
+          background: rgba(255, 255, 255, 0.05);
+          border: 1px solid rgba(255, 255, 255, 0.15);
           backdrop-filter: blur(12px);
-          transition: all 0.3s ease;
+          transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
           color: var(--sc);
         }
 
@@ -568,31 +412,52 @@ const HeroSection = () => {
           pointer-events: none;
         }
 
-        .iso-lbl {
-          opacity: 0;
+        /* ── Dynamic Speech-Bubble Tooltips (Hybrid) ── */
+        .doodle-hybrid-tooltip {
           position: absolute;
-          top: -30px;
+          top: 0;
           left: 50%;
-          transform: translateX(-50%);
-          font-size: 10px;
-          font-family: 'JetBrains Mono', monospace;
-          color: var(--sc);
-          background: rgba(0, 0, 0, 0.85);
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          padding: 3px 8px;
-          border-radius: 6px;
+          transform: translateX(-50%) scale(0.8) rotate(-6deg);
+          padding: 5px 12px;
+          color: var(--t-cl);
+          background-color: var(--t-bg);
+          border-radius: 12px;
+          font-size: 11px;
+          font-weight: 700;
+          letter-spacing: 0.05em;
           white-space: nowrap;
-          transition: all 0.3s ease;
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55);
           pointer-events: none;
+          z-index: 20;
         }
 
+        /* Tooltip Arrow */
+        .doodle-hybrid-tooltip::after {
+          content: "";
+          position: absolute;
+          bottom: -5px;
+          left: 50%;
+          transform: translateX(-50%) rotate(45deg);
+          width: 8px;
+          height: 8px;
+          background-color: var(--t-bg);
+        }
+
+        /* Hover States */
         .iso-social:hover .iso-icon {
-          transform: translate(5px, -5px);
+          transform: translate(3px, -5px) scale(1.08) rotate(4deg);
+          background: rgba(255, 255, 255, 0.12);
+          box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
-        .iso-social:hover .iso-lbl {
+        .iso-social:hover .doodle-hybrid-tooltip {
           opacity: 1;
-          top: -36px;
+          visibility: visible;
+          top: -46px;
+          transform: translateX(-50%) scale(1) rotate(2deg);
         }
 
         .iso-social:hover .iso-sh1 {
@@ -610,236 +475,20 @@ const HeroSection = () => {
           transform: translate(9px, -9px);
         }
 
-        /* ── CV BUTTON ── */
-        .cv-wrap {
-          background: transparent;
-          border: 2px solid hsla(217, 91%, 60%, 0.65);
-          display: flex;
-          align-items: center;
-          border-radius: 50px;
-          width: 178px;
-          cursor: pointer;
-          transition: all 0.4s ease;
-          padding: 5px;
-          position: relative;
-          user-select: none;
-        }
-
-        .cv-wrap::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: #fff;
-          width: 8px;
-          height: 8px;
-          transition: all 0.4s ease;
-          border-radius: 100%;
-          margin: auto;
-          opacity: 0;
-          visibility: hidden;
-        }
-
-        .cv-circle {
-          height: 44px;
-          width: 44px;
-          border-radius: 50%;
-          background: hsl(217, 91%, 60%);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          transition: all 0.4s ease;
-          position: relative;
-          overflow: hidden;
-          flex-shrink: 0;
-        }
-
-        .cv-circle::before {
-          content: "";
-          position: absolute;
-          left: 0;
-          top: 0;
-          background: hsl(217, 71%, 44%);
-          width: 100%;
-          height: 0;
-          transition: all 0.4s ease;
-        }
-
-        .cv-ico {
-          color: #fff;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          transition: all 0.3s ease;
-          z-index: 2;
-        }
-
-        .cv-arr {
-          width: 26px;
-        }
-
-        .cv-doc {
-          opacity: 0;
-          visibility: hidden;
-        }
-
-        .cv-sq {
-          aspect-ratio: 1;
-          width: 14px;
-          border-radius: 2px;
-          background: #fff;
-          opacity: 0;
-          visibility: hidden;
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          transition: all 0.4s ease;
-          z-index: 2;
-        }
-
-        .cv-txt {
-          font-size: 14px;
-          color: #fff;
-          transition: all 0.4s ease;
-          position: absolute;
-          right: 16px;
-          bottom: 13px;
-          font-family: 'Space Grotesk', sans-serif;
-          font-weight: 500;
-          white-space: nowrap;
-        }
-
-        .cv-op {
-          opacity: 0;
-          visibility: hidden;
-        }
-
-        .cv-on {
-          width: 58px;
-          animation: cvDone 0.4s ease 3.5s forwards;
-        }
-
-        .cv-on::before {
-          animation: cvRing 3s ease-in-out 0.4s forwards;
-        }
-
-        .cv-on .cv-circle {
-          animation:
-            cvPulse 1s forwards,
-            cvHide 0.2s ease 3.5s forwards;
-          rotate: 180deg;
-        }
-
-        .cv-on .cv-circle::before {
-          animation: cvFill 3s ease-in-out forwards;
-        }
-
-        .cv-on .cv-arr {
-          opacity: 0;
-          visibility: hidden;
-        }
-
-        .cv-on .cv-doc {
-          opacity: 1 !important;
-          visibility: visible !important;
-        }
-
-        .cv-on .cv-sq {
-          opacity: 1;
-          visibility: visible;
-        }
-
-        .cv-on .cv-dl {
-          opacity: 0;
-          visibility: hidden;
-        }
-
-        .cv-on .cv-op {
-          animation: cvShow 0.4s ease 3.5s forwards;
-        }
-
-        @keyframes cvPulse {
-          0% {
-            scale: 0.95;
-            box-shadow:
-              0 0 0 0 rgba(255, 255, 255, 0.7);
-          }
-
-          70% {
-            scale: 1;
-            box-shadow:
-              0 0 0 14px rgba(255, 255, 255, 0);
-          }
-
-          100% {
-            scale: 0.95;
-            box-shadow:
-              0 0 0 0 rgba(255, 255, 255, 0);
+        /* Responsive Arch Frame */
+        @media (max-width: 1024px) {
+          .arch-frame {
+            max-width: 320px;
+            height: 50vh;
+            border-radius: 180px 180px 0 0;
           }
         }
 
-        @keyframes cvFill {
-          from {
-            height: 0;
-          }
-
-          to {
-            height: 100%;
-          }
-        }
-
-        @keyframes cvRing {
-          0% {
-            transform:
-              rotate(-90deg)
-              translate(27px)
-              rotate(0);
-            opacity: 1;
-            visibility: visible;
-          }
-
-          99% {
-            transform:
-              rotate(270deg)
-              translate(27px)
-              rotate(270deg);
-            opacity: 1;
-            visibility: visible;
-          }
-
-          100% {
-            opacity: 0;
-            visibility: hidden;
-          }
-        }
-
-        @keyframes cvDone {
-          100% {
-            width: 168px;
-            border-color: rgb(35, 174, 35);
-          }
-        }
-
-        @keyframes cvHide {
-          100% {
-            opacity: 0;
-            visibility: hidden;
-          }
-        }
-
-        @keyframes cvShow {
-          100% {
-            opacity: 1;
-            visibility: visible;
-            right: 52px;
-          }
-        }
-
-        /* ── MOBILE ── */
         @media (max-width: 640px) {
-          .hero-dot-bg {
-            background-size: 18px 18px;
+          .arch-frame {
+            max-width: 260px;
+            height: 42vh;
+            border-radius: 140px 140px 0 0;
           }
         }
       `}</style>
