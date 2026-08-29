@@ -250,11 +250,14 @@ const AboutSection = () => {
                 <span className="text-[#0B1020] font-semibold border-b border-slate-300">
                   Consistent always
                 </span>
-                . Drawn to web apps, product tools, SecDevOps, and AI‑powered systems — anywhere data, logic, and real users meet.
+                . Drawn to web apps, product tools, SecDevOps, and AI‑powered systems .. anywhere data, logic, and real users meet.
               </p>
 
               <p>
-                Skilled at integrating security into development, I build resilient SecDevOps pipelines while exploring how AI models learn, reason, and embed intelligence into modern platforms.
+               Deeply interested in AI and machine learning, how models learn, how
+      systems reason, and how intelligence can be embedded into real products.
+      Equally drawn to security and DevOps tooling, designing systems that are
+      not only smart, but also safe, reliable, and operable in production.
               </p>
 
               <p>
