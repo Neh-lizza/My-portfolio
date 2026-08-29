@@ -8,42 +8,161 @@
   :root {
     --background: 0 0% 0%;
     --foreground: 0 0% 96%;
+
     --card: 0 0% 7%;
     --card-foreground: 0 0% 96%;
+
     --popover: 0 0% 7%;
     --popover-foreground: 0 0% 96%;
-    --primary: 200 40% 25%;
-    --primary-foreground: 0 0% 100%;
+
+    --primary: 217 91% 60%;
+    --primary-foreground: 0 0% 0%;
+
     --secondary: 0 0% 12%;
     --secondary-foreground: 0 0% 90%;
+
     --muted: 0 0% 11%;
     --muted-foreground: 0 0% 55%;
-    --accent: 200 40% 25%;
+
+    --accent: 262 83% 58%;
     --accent-foreground: 0 0% 98%;
+
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
+
     --border: 0 0% 15%;
     --input: 0 0% 15%;
-    --ring: 200 40% 25%;
+    --ring: 217 91% 60%;
     --radius: 0.75rem;
+
+    --glass-bg: hsla(0, 0%, 100%, 0.06);
+    --glass-border: hsla(0, 0%, 100%, 0.12);
+    --glow-primary: 0 0 60px hsla(217, 91%, 60%, 0.18);
+    --glow-accent: 0 0 60px hsla(262, 83%, 58%, 0.12);
   }
 }
 
 @layer base {
   * { @apply border-border; }
   body {
-    @apply bg-background text-foreground antialiased;
+    @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Space Grotesk', system-ui, sans-serif;
     background-color: #000;
     color: #f5f5f5;
   }
-  h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', system-ui, sans-serif; }
+  h1,h2,h3,h4,h5,h6 { font-family: 'Space Grotesk', system-ui, sans-serif; }
   code, pre, .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
 }
 
 @layer utilities {
+  .glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(16px);
+  }
+  .glow-primary { box-shadow: var(--glow-primary); }
+  .glow-accent  { box-shadow: var(--glow-accent); }
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, #233D4D, #3a6b85);
+    background-image: linear-gradient(135deg, hsl(217 91% 60%), hsl(262 83% 58%));
   }
+  .hero-grid {
+    background-image:
+      linear-gradient(hsla(217,91%,60%,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsla(217,91%,60%,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+}
+
+/* ── SCROLL-TO-TOP rotating border ── */
+@keyframes scrollBtnSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* ── ALTERNATING SECTION COLORS ── */
+
+/* DARK sections — black/dark-grey + noise feel */
+#about,
+#experience {
+  background-color: #111111;
+  color: #f0f0f0;
+}
+#about .text-muted-foreground,
+#experience .text-muted-foreground {
+  color: rgba(255,255,255,0.5) !important;
+}
+#about .text-foreground,
+#experience .text-foreground {
+  color: #f0f0f0 !important;
+}
+
+/* LIGHT sections — clean white */
+#work,
+#contact {
+  background-color: #f9f9f9;
+  color: #111111;
+}
+#work .text-muted-foreground,
+#contact .text-muted-foreground {
+  color: #666666 !important;
+}
+#work .text-foreground,
+#contact .text-foreground {
+  color: #111111 !important;
+}
+#work h2, #work h3, #work p,
+#contact h2, #contact h3, #contact p {
+  color: inherit;
+}
+#work .glass,
+#contact .glass {
+  background: rgba(0,0,0,0.05) !important;
+  border-color: rgba(0,0,0,0.1) !important;
+}
+#work .text-gradient,
+#contact .text-gradient {
+  background-image: linear-gradient(135deg, hsl(217 91% 45%), hsl(262 83% 48%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#work .font-mono,
+#contact .font-mono {
+  color: hsl(217,91%,40%) !important;
+}
+
+/* Strategy & Skills — dark grey */
+section:not(#about):not(#work):not(#experience):not(#contact):not([id="hero"]) {
+  background-color: #0e0e0e;
+  color: #f0f0f0;
+}
+
+/* Footer always dark */
+footer {
+  background-color: #080808 !important;
+  color: rgba(255,255,255,0.5) !important;
+}
+
+/* ── CRT SCANLINES (subtle global) ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.022) 2px,
+    rgba(0,0,0,0.022) 4px
+  );
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.2) 100%);
 }
