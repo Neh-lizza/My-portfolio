@@ -3,6 +3,7 @@ import Navbar from "@/components/portfolio/Navbar";
 import HeroSection from "@/components/portfolio/HeroSection";
 import AboutSection from "@/components/portfolio/AboutSection";
 import SkillsSection from "@/components/portfolio/SkillsSection";
+import ProjectsSection from "@/components/portfolio/ProjectsSection";
 
 const Index = () => {
   return (
@@ -12,6 +13,7 @@ const Index = () => {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
+        <ProjectsSection />
         {/* Additional portfolio sections go here */}
       </main>
     </div>
