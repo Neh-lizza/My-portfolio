@@ -4,10 +4,10 @@ import { Menu, X } from "lucide-react";
 import useActiveSection from "@/hooks/useActiveSection";
 
 const navLinks = [
-  { label: "About",      href: "#about",      id: "about" },
-  { label: "Work",       href: "#work",        id: "work" },
-  { label: "Experience", href: "#experience",  id: "experience" },
-  { label: "Contact",    href: "#contact",     id: "contact" },
+  { label: "About", href: "#about", id: "about" },
+  { label: "Work", href: "#work", id: "work" },
+  { label: "Experience", href: "#experience", id: "experience" },
+  { label: "Contact", href: "#contact", id: "contact" },
 ];
 
 const Navbar = () => {
@@ -20,18 +20,35 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 glass"
+      className="fixed top-0 left-0 right-0 z-50 bg-[#0B0D12]/80 backdrop-blur-md border-b border-white/10"
     >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      {/* Background SVG Noise Overlay */}
+      <div className="absolute inset-0 pointer-events-none z-0 opacity-20 mix-blend-overlay">
+        <svg className="w-full h-full">
+          <filter id="navbarNoise">
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.8"
+              numOctaves="3"
+              stitchTiles="stitch"
+            />
+          </filter>
+          <rect width="100%" height="100%" filter="url(#navbarNoise)" />
+        </svg>
+      </div>
+
+      {/* Dotted Pattern Overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(#334155_1px,transparent_1px)] [background-size:20px_20px] opacity-30 pointer-events-none z-0" />
+
+      <div className="relative z-10 max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
         <a href="#" className="text-xl font-bold text-gradient">
-  Neh<span className="text-primary">.</span>
-</a>
+          Neh<span className="text-primary">.</span>
+        </a>
 
         {/* Desktop nav */}
         <div className="hidden md:flex items-center gap-1" style={{ position: "relative" }}>
-
           {navLinks.map((link) => (
             <a
               key={link.href}
@@ -94,15 +111,12 @@ const Navbar = () => {
               {link.label}
             </a>
           ))}
-
-          
-          
         </div>
 
         {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-foreground md:hidden"
+          className="text-foreground md:hidden relative z-10"
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -115,7 +129,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-border overflow-hidden"
+            className="md:hidden bg-[#0B0D12]/95 backdrop-blur-md border-t border-white/10 overflow-hidden relative z-10"
           >
             <div className="px-6 py-4 flex flex-col gap-4">
               {navLinks.map((link) => (
@@ -132,8 +146,6 @@ const Navbar = () => {
                   {link.label}
                 </a>
               ))}
-              
-              Let's Talk
             </div>
           </motion.div>
         )}
