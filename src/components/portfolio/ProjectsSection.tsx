@@ -394,7 +394,7 @@ const FullScreenProjectModal: React.FC<FullScreenProjectModalProps> = ({
         <div className="lg:col-span-4 bg-[#f4f2ee] text-slate-900 p-8 lg:p-10 flex flex-col justify-between overflow-y-auto">
           <div className="space-y-6">
             <div>
-              <p style={{ color: "#233D4D" }} className="text-xs font-mono uppercase tracking-widest font-bold mb-2">
+              <p className="text-xs font-mono uppercase tracking-widest font-bold mb-2 text-[#233D4D]">
                 {project.subtitle}
               </p>
               <h1 className="text-3xl lg:text-4xl font-extrabold font-serif tracking-tight text-slate-900 leading-tight">
@@ -431,7 +431,8 @@ const FullScreenProjectModal: React.FC<FullScreenProjectModalProps> = ({
                 {project.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="px-2.5 py-1 rounded bg-slate-200 border border-slate-300 text-[11px] font-mono text-slate-700"
+                    className="px-2.5 py-1 rounded bg-slate-200 border border-slate-300 text-[11px] font-mono text-[#233D4D]"
+                    style={{ color: "#233D4D" }}
                   >
                     {tech}
                   </span>
@@ -496,7 +497,7 @@ export default function StackedProjectsSection() {
         <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
           Projects
         </h2>
-        <p style={{ color: "#233D4D" }} className="text-[11px] sm:text-xs font-semibold tracking-wider uppercase mt-0.5">
+        <p className="text-[11px] sm:text-xs font-semibold tracking-wider uppercase mt-0.5 text-[#233D4D]">
           My Recent Work
         </p>
       </div>
@@ -514,7 +515,7 @@ export default function StackedProjectsSection() {
           </button>
 
           <div className="text-center">
-            <h3 style={{ color: "#233D4D" }} className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider">
+            <h3 className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-[#233D4D]">
               {currentProject.subtitle}
             </h3>
             <p className="text-slate-400 text-xs mt-0.5 font-mono">
@@ -546,7 +547,11 @@ export default function StackedProjectsSection() {
               
               <div className="flex flex-wrap gap-1.5 pt-1">
                 {currentProject.techStack.map((tech) => (
-                  <span key={tech} className="px-2.5 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-white/70">
+                  <span 
+                    key={tech} 
+                    className="px-2.5 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-[#233D4D]"
+                    style={{ color: "#233D4D" }}
+                  >
                     {tech}
                   </span>
                 ))}
