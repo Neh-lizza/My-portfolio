@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { Code2, BookOpen, Music, ShieldCheck } from "lucide-react";
+import { Code2, BookOpen, Music } from "lucide-react";
 
 /* ── Light Film Grain Canvas ───────────────────────────────────────── */
 const Noise = () => {
@@ -68,13 +68,6 @@ const Noise = () => {
 const AboutSection = () => {
   const interests = [
     {
-      label: "SecDevOps",
-      icon: <ShieldCheck size={20} />,
-      color: "#0B1020",
-      tooltipBg: "#0B1020",
-      tooltipColor: "#ffffff",
-    },
-    {
       label: "Reading",
       icon: <BookOpen size={20} />,
       color: "#233D4D",
@@ -100,7 +93,7 @@ const AboutSection = () => {
   return (
     <section
       id="about"
-      className="relative w-full overflow-hidden about-dot-bg-white py-6 md:py-10 flex items-start justify-center"
+      className="relative w-full overflow-hidden about-dot-bg-white py-8 md:py-10 flex items-center justify-center"
     >
       {/* ── Film Grain Noise ── */}
       <Noise />
@@ -197,30 +190,33 @@ const AboutSection = () => {
 
       {/* ── Content ── */}
       <div className="relative z-[4] max-w-6xl mx-auto px-6 w-full">
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 items-start">
+        {/* On mobile: grid layout with absolute/overlapping positioning. On desktop (md:): standard 2-column layout */}
+        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center relative">
 
-          {/* Left Column Slot */}
+          {/* Left Column: Image (Shifts behind text on mobile using absolute positioning with low opacity, normal block on desktop) */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="order-2 md:order-1 w-full"
+            className="absolute inset-0 md:relative md:inset-auto flex justify-center items-center pointer-events-none md:pointer-events-auto z-0 md:z-auto opacity-15 md:opacity-100"
           >
-            <div className="w-full min-h-[200px] rounded-2xl border-2 border-dashed border-slate-300 flex items-center justify-center p-4 text-center bg-white/40 backdrop-blur-sm shadow-sm hover:border-slate-400 transition-colors">
-              <span className="text-xs font-mono text-slate-500">
-               
-              </span>
+            <div className="relative w-full max-w-[280px] md:max-w-[360px] aspect-square flex items-center justify-center">
+              <img
+                src="/about.png"
+                alt="Neh Lizza Illustration"
+                className="w-full h-full object-contain object-center"
+              />
             </div>
           </motion.div>
 
-          {/* Right Column: Bio Content */}
+          {/* Right Column: Bio Content (Stays cleanly on top on mobile with a higher z-index) */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="order-1 md:order-2 relative"
+            className="relative z-10 md:z-auto py-4 md:py-0"
           >
             {/* Main Heading */}
             <h2
@@ -265,7 +261,7 @@ const AboutSection = () => {
               </p>
             </div>
 
-            {/* Interest Badges with Hero Social Hover Styling */}
+            {/* Interest Badges */}
             <div className="flex items-center gap-4 flex-wrap mt-6 pt-2">
               {interests.map(({ label, icon, color, tooltipBg, tooltipColor }) => (
                 <div
