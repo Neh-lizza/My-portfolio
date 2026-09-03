@@ -153,7 +153,6 @@ const HeroSection = () => {
                   className="text-[11px] sm:text-[12px] tracking-[0.18em] uppercase mb-2 sm:mb-[18px]"
                   style={{ color: "rgba(255, 255, 255, 0.55)" }}
                 >
-                  {/* <span className="text-white font-medium">Software Engineer</span> */}
                 </motion.div>
 
                 <motion.h1
@@ -172,7 +171,7 @@ const HeroSection = () => {
                   </span>
                 </motion.h1>
 
-                {/* Adjacent Download CV Button directly under title on Mobile */}
+                {/* Adjacent View CV Button directly under title on Mobile */}
                 <motion.div
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -180,13 +179,13 @@ const HeroSection = () => {
                   className="mt-4 lg:hidden"
                 >
                   <a
-                    href="https://drive.google.com/uc?export=download&id=1sj6HkpAChLDbM2t_sHFrAj6ejX-kNl96"
+                    href="https://drive.google.com/file/d/1sj6HkpAChLDbM2t_sHFrAj6ejX-kNl96/view?usp=sharing"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group relative inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.15)] text-white text-[12px] sm:text-[13px] font-medium tracking-wide backdrop-blur-md transition-all duration-300 hover:border-[#233D4D] hover:bg-[rgba(35,61,77,0.2)] hover:shadow-[0_0_20px_rgba(35,61,77,0.4)]"
                   >
                     <FileText size={15} className="text-white/70 group-hover:text-white transition-colors" />
-                    <span>Download CV</span>
+                    <span>View CV</span>
                     <ArrowDown size={13} className="text-white/50 group-hover:text-white group-hover:translate-y-0.5 transition-all" />
                   </a>
                 </motion.div>
@@ -247,16 +246,16 @@ const HeroSection = () => {
                 Let's Talk
               </a>
 
-              {/* Desktop Download CV Button placed below See My Work & Let's Talk */}
+              {/* Desktop View CV Button placed below See My Work & Let's Talk */}
               <div className="hidden lg:block w-full mt-2">
                 <a
-                  href="https://drive.google.com/uc?export=download&id=1sj6HkpAChLDbM2t_sHFrAj6ejX-kNl96"
+                  href="https://drive.google.com/file/d/1sj6HkpAChLDbM2t_sHFrAj6ejX-kNl96/view?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.15)] text-white text-[13px] font-medium tracking-wide backdrop-blur-md transition-all duration-300 hover:border-[#233D4D] hover:bg-[rgba(35,61,77,0.2)] hover:shadow-[0_0_20px_rgba(35,61,77,0.4)]"
                 >
                   <FileText size={15} className="text-white/70 group-hover:text-white transition-colors" />
-                  <span>Download CV</span>
+                  <span>View CV</span>
                   <ArrowDown size={13} className="text-white/50 group-hover:text-white group-hover:translate-y-0.5 transition-all" />
                 </a>
               </div>
