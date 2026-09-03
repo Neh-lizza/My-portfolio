@@ -266,7 +266,7 @@ const FullScreenProjectModal: React.FC<FullScreenProjectModalProps> = ({
       {/* Top Navigation Bar */}
       <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#121212] select-none z-20">
         <div className="flex items-center gap-3">
-          <span className="text-xs font-mono uppercase tracking-widest text-slate-400">
+          <span className="text-xs font-mono uppercase tracking-widest text-slate-300">
             CASE STUDY {project.number}
           </span>
         </div>
@@ -274,7 +274,7 @@ const FullScreenProjectModal: React.FC<FullScreenProjectModalProps> = ({
         <div className="flex items-center gap-4">
           <button
             onClick={onClose}
-            className="flex items-center gap-2 px-3 py-1.5 rounded bg-white/10 hover:bg-white/20 text-xs font-mono tracking-wider uppercase transition"
+            className="flex items-center gap-2 px-3 py-1.5 rounded bg-white/15 hover:bg-white/25 text-xs font-mono tracking-wider uppercase transition text-white font-medium"
           >
             CLOSE <X size={14} />
           </button>
@@ -284,7 +284,7 @@ const FullScreenProjectModal: React.FC<FullScreenProjectModalProps> = ({
       {/* Main Split Layout Container */}
       <div className="flex-1 grid grid-cols-1 lg:grid-cols-12 overflow-hidden">
         
-        {/* Left Side: Preview Window (Supports live interactive iframe or standard gallery) */}
+        {/* Left Side: Preview Window */}
         <div className="lg:col-span-8 bg-black/60 p-6 lg:p-10 flex flex-col justify-center items-center relative overflow-y-auto border-r border-white/10">
           <div className="relative w-full max-w-4xl bg-[#1c1c1c] rounded-xl border border-white/15 shadow-2xl overflow-hidden flex flex-col">
             
@@ -295,7 +295,7 @@ const FullScreenProjectModal: React.FC<FullScreenProjectModalProps> = ({
                 <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                 <div className="w-3 h-3 rounded-full bg-green-500/80" />
               </div>
-              <span className="text-xs font-mono text-slate-400 truncate max-w-sm">
+              <span className="text-xs font-mono text-slate-300 truncate max-w-sm">
                 {project.liveUrl !== "#" ? project.liveUrl : `https://${project.title.toLowerCase().replace(/[^a-z0-9]/g, "")}.app`}
               </span>
               <div className="w-10" />
@@ -332,7 +332,7 @@ const FullScreenProjectModal: React.FC<FullScreenProjectModalProps> = ({
                       onClick={() =>
                         setActiveImageIndex((prev) => (prev === 0 ? project.images.length - 1 : prev - 1))
                       }
-                      className="absolute left-4 p-2.5 rounded-full bg-black/60 border border-white/20 text-white hover:bg-black/90 transition shadow-lg"
+                      className="absolute left-4 p-2.5 rounded-full bg-black/80 border border-white/30 text-white hover:bg-black transition shadow-lg"
                     >
                       <ChevronLeft size={20} />
                     </button>
@@ -340,7 +340,7 @@ const FullScreenProjectModal: React.FC<FullScreenProjectModalProps> = ({
                       onClick={() =>
                         setActiveImageIndex((prev) => (prev === project.images.length - 1 ? 0 : prev + 1))
                       }
-                      className="absolute right-4 p-2.5 rounded-full bg-black/60 border border-white/20 text-white hover:bg-black/90 transition shadow-lg"
+                      className="absolute right-4 p-2.5 rounded-full bg-black/80 border border-white/30 text-white hover:bg-black transition shadow-lg"
                     >
                       <ChevronRight size={20} />
                     </button>
@@ -352,7 +352,7 @@ const FullScreenProjectModal: React.FC<FullScreenProjectModalProps> = ({
             {/* Bottom Gallery Controls / Info */}
             {!project.isIframe && project.images.length > 1 && (
               <div className="p-4 bg-[#181818] border-t border-white/10 flex items-center justify-between">
-                <span className="text-xs font-mono text-slate-400">
+                <span className="text-xs font-mono text-slate-300">
                   Gallery View ({activeImageIndex + 1} / {project.images.length})
                 </span>
                 <div className="flex gap-2">
@@ -361,7 +361,7 @@ const FullScreenProjectModal: React.FC<FullScreenProjectModalProps> = ({
                       key={idx}
                       onClick={() => setActiveImageIndex(idx)}
                       className={`w-10 h-6 rounded overflow-hidden border transition ${
-                        idx === activeImageIndex ? "border-white opacity-100 scale-105" : "border-white/20 opacity-50"
+                        idx === activeImageIndex ? "border-white opacity-100 scale-105" : "border-white/30 opacity-60"
                       }`}
                     >
                       <img src={img} alt="thumb" className="w-full h-full object-cover" />
@@ -377,13 +377,13 @@ const FullScreenProjectModal: React.FC<FullScreenProjectModalProps> = ({
           <div className="flex items-center gap-4 mt-6">
             <button
               onClick={onPrev}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-mono hover:bg-white/10 transition"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-xs font-mono text-white hover:bg-white/20 transition font-medium"
             >
               <ChevronLeft size={16} /> PREV PROJECT
             </button>
             <button
               onClick={onNext}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-mono hover:bg-white/10 transition"
+              className="flex items-center gap-2 px-4 py-2 rounded-lg bg-white/10 border border-white/20 text-xs font-mono text-white hover:bg-white/20 transition font-medium"
             >
               NEXT PROJECT <ChevronRight size={16} />
             </button>
@@ -400,39 +400,38 @@ const FullScreenProjectModal: React.FC<FullScreenProjectModalProps> = ({
               <h1 className="text-3xl lg:text-4xl font-extrabold font-serif tracking-tight text-slate-900 leading-tight">
                 {project.title}
               </h1>
-              <p className="text-xs font-mono text-slate-500 mt-2">{project.date}</p>
+              <p className="text-xs font-mono text-slate-600 font-semibold mt-2">{project.date}</p>
             </div>
 
             <div className="space-y-6 pt-4 border-t border-slate-300">
               <div>
-                <h3 className="text-xs font-mono uppercase tracking-wider text-slate-500 mb-1">
+                <h3 className="text-xs font-mono uppercase tracking-wider text-slate-600 font-bold mb-1">
                   THE GOAL
                 </h3>
-                <p className="text-sm leading-relaxed text-slate-800">
+                <p className="text-sm leading-relaxed text-slate-900">
                   {project.theGoal}
                 </p>
               </div>
 
               <div>
-                <h3 className="text-xs font-mono uppercase tracking-wider text-slate-500 mb-1">
+                <h3 className="text-xs font-mono uppercase tracking-wider text-slate-600 font-bold mb-1">
                   THE SYSTEM
                 </h3>
-                <p className="text-sm leading-relaxed text-slate-800">
+                <p className="text-sm leading-relaxed text-slate-900">
                   {project.theSystem}
                 </p>
               </div>
             </div>
 
             <div>
-              <h3 className="text-xs font-mono uppercase tracking-wider text-slate-500 mb-2">
+              <h3 className="text-xs font-mono uppercase tracking-wider text-slate-600 font-bold mb-2">
                 TECH STACK
               </h3>
               <div className="flex flex-wrap gap-1.5">
                 {project.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="px-2.5 py-1 rounded bg-slate-200 border border-slate-300 text-[11px] font-mono text-[#233D4D]"
-                    style={{ color: "#233D4D" }}
+                    className="px-2.5 py-1 rounded bg-slate-200 border border-slate-300 text-[11px] font-mono font-bold text-[#233D4D]"
                   >
                     {tech}
                   </span>
@@ -497,51 +496,53 @@ export default function StackedProjectsSection() {
         <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
           Projects
         </h2>
-        <p className="text-[11px] sm:text-xs font-semibold tracking-wider uppercase mt-0.5 text-[#233D4D]">
+        <p className="text-[11px] sm:text-xs font-semibold tracking-wider uppercase mt-0.5 text-slate-300">
           My Recent Work
         </p>
       </div>
 
       {/* Main Glass Stack Card Box */}
-      <div className="relative z-10 w-full max-w-4xl rounded-2xl bg-black/40 border border-white/15 backdrop-blur-xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
+      <div className="relative z-10 w-full max-w-4xl rounded-2xl bg-black/50 border border-white/20 backdrop-blur-xl p-6 sm:p-8 shadow-2xl flex flex-col justify-between">
         
         {/* Carousel Top Navigation Row */}
         <div className="flex items-center justify-between mb-6">
           <button
             onClick={handlePrev}
-            className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition"
+            className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition shadow-md"
+            aria-label="Previous Project"
           >
-            <ChevronLeft size={18} />
+            <ChevronLeft size={20} />
           </button>
 
-          <div className="text-center">
-            <h3 className="text-xs sm:text-sm font-mono font-bold uppercase tracking-wider text-[#233D4D]">
+          <div className="text-center px-4">
+            <h3 className="text-xs sm:text-sm font-mono font-extrabold uppercase tracking-widest text-white drop-shadow-sm">
               {currentProject.subtitle}
             </h3>
-            <p className="text-slate-400 text-xs mt-0.5 font-mono">
+            <p className="text-xs mt-1 font-mono font-semibold tracking-wide text-slate-300">
               {currentProject.date}
             </p>
           </div>
 
           <button
             onClick={handleNext}
-            className="w-9 h-9 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/10 transition"
+            className="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white hover:bg-white/20 transition shadow-md"
+            aria-label="Next Project"
           >
-            <ChevronRight size={18} />
+            <ChevronRight size={20} />
           </button>
         </div>
 
         {/* Project Card Triggering Full-Screen Immersive View */}
         <div
           onClick={() => setIsFullScreenOpen(true)}
-          className="bg-black/50 border border-white/10 rounded-xl p-5 sm:p-6 cursor-pointer group hover:border-[#233D4D] transition-all"
+          className="bg-black/60 border border-white/15 rounded-xl p-5 sm:p-6 cursor-pointer group hover:border-white/40 transition-all shadow-lg"
         >
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
             <div className="md:col-span-7 flex flex-col justify-center space-y-3">
               <h4 className="text-lg sm:text-xl font-bold text-white group-hover:text-slate-200 transition-colors">
                 {currentProject.title}
               </h4>
-              <p className="text-slate-300 text-xs sm:text-sm leading-relaxed line-clamp-3">
+              <p className="text-slate-200 text-xs sm:text-sm leading-relaxed line-clamp-3">
                 {currentProject.description}
               </p>
               
@@ -549,8 +550,7 @@ export default function StackedProjectsSection() {
                 {currentProject.techStack.map((tech) => (
                   <span 
                     key={tech} 
-                    className="px-2.5 py-0.5 rounded bg-white/5 border border-white/10 text-[10px] font-mono text-[#233D4D]"
-                    style={{ color: "#233D4D" }}
+                    className="px-2.5 py-1 rounded bg-white/10 border border-white/20 text-[11px] font-mono font-bold text-white shadow-sm"
                   >
                     {tech}
                   </span>
@@ -558,7 +558,7 @@ export default function StackedProjectsSection() {
               </div>
             </div>
 
-            <div className="md:col-span-5 h-36 sm:h-44 border border-white/10 rounded-xl overflow-hidden shadow-inner bg-black/40 relative">
+            <div className="md:col-span-5 h-36 sm:h-44 border border-white/20 rounded-xl overflow-hidden shadow-inner bg-black/40 relative">
               <img
                 src={currentProject.images[0]}
                 alt={currentProject.title}
@@ -567,11 +567,11 @@ export default function StackedProjectsSection() {
             </div>
           </div>
 
-          <div className="mt-4 pt-3 border-t border-white/10 flex justify-between items-center text-xs">
-            <span className="inline-flex items-center gap-1.5 text-white/80 group-hover:text-white font-semibold transition">
+          <div className="mt-4 pt-3 border-t border-white/15 flex justify-between items-center text-xs">
+            <span className="inline-flex items-center gap-1.5 text-white font-bold group-hover:underline transition">
               Open Full-Screen Case Study <ExternalLink size={12} />
             </span>
-            <span className="font-mono text-[10px] text-white/40">
+            <span className="font-mono text-[11px] font-bold text-slate-200">
               Project {currentProject.id} of {projects.length}
             </span>
           </div>
@@ -583,8 +583,9 @@ export default function StackedProjectsSection() {
             <button
               key={proj.id}
               onClick={() => setActiveProjectIndex(idx)}
-              className={`h-2 rounded-full transition-all duration-300 ${
-                idx === activeProjectIndex ? "w-6 bg-white" : "w-2 bg-white/30"
+              aria-label={`Go to project ${proj.id}`}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                idx === activeProjectIndex ? "w-8 bg-white" : "w-2.5 bg-white/40 hover:bg-white/60"
               }`}
             />
           ))}

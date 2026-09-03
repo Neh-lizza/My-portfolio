@@ -145,7 +145,7 @@ const HeroSection = () => {
 
             {/* Mobile Split Layout Top Row: Headline Left, Social Icons Right */}
             <div className="flex items-start justify-between gap-4">
-              <div className="flex flex-col">
+              <div className="flex flex-col w-full">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -153,7 +153,7 @@ const HeroSection = () => {
                   className="text-[11px] sm:text-[12px] tracking-[0.18em] uppercase mb-2 sm:mb-[18px]"
                   style={{ color: "rgba(255, 255, 255, 0.55)" }}
                 >
-                  // <span className="text-white font-medium">Software Engineer</span>
+                  {/* <span className="text-white font-medium">Software Engineer</span> */}
                 </motion.div>
 
                 <motion.h1
@@ -177,7 +177,7 @@ const HeroSection = () => {
                   initial={{ opacity: 0, y: 15 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.35 }}
-                  className="mt-4"
+                  className="mt-4 lg:hidden"
                 >
                   <a
                     href="https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/view?usp=sharing"
@@ -192,12 +192,12 @@ const HeroSection = () => {
                 </motion.div>
               </div>
 
-              {/* Right Side Social Icons (Adjacent to headline on Mobile) */}
+              {/* Right Side Social Icons (Visible only on Mobile) */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.45 }}
-                className="flex flex-col sm:flex-row items-center gap-3 pt-1"
+                className="flex flex-col sm:flex-row items-center gap-3 pt-1 lg:hidden"
               >
                 {socials.map(({ label, href, color, tooltipBg, tooltipColor, icon }) => (
                   <div
@@ -232,7 +232,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.55 }}
-              className="flex flex-wrap gap-3 mt-6 mb-4"
+              className="flex flex-wrap gap-3 mt-6 mb-4 items-center"
             >
               <a
                 href="#work"
@@ -246,6 +246,44 @@ const HeroSection = () => {
               >
                 Let's Talk
               </a>
+
+              {/* Desktop Download CV Button placed below See My Work & Let's Talk */}
+              <div className="hidden lg:block w-full mt-2">
+                <a
+                  href="https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.15)] text-white text-[13px] font-medium tracking-wide backdrop-blur-md transition-all duration-300 hover:border-[#233D4D] hover:bg-[rgba(35,61,77,0.2)] hover:shadow-[0_0_20px_rgba(35,61,77,0.4)]"
+                >
+                  <FileText size={15} className="text-white/70 group-hover:text-white transition-colors" />
+                  <span>Download CV</span>
+                  <ArrowDown size={13} className="text-white/50 group-hover:text-white group-hover:translate-y-0.5 transition-all" />
+                </a>
+              </div>
+            </motion.div>
+
+            {/* Desktop Social Icons Row placed below CTA buttons */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+              className="hidden lg:flex items-center gap-3 mt-4"
+            >
+              {socials.map(({ label, href, color, tooltipBg, tooltipColor, icon }) => (
+                <div
+                  key={label}
+                  className="iso-social"
+                  style={{ "--sc": color, "--t-bg": tooltipBg, "--t-cl": tooltipColor } as React.CSSProperties}
+                >
+                  <span className="iso-sh iso-sh1" />
+                  <span className="iso-sh iso-sh2" />
+                  <span className="iso-sh iso-sh3" />
+                  <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+                    <div className="iso-icon">{icon}</div>
+                  </a>
+                  <div className="doodle-hybrid-tooltip">{label}</div>
+                </div>
+              ))}
             </motion.div>
 
           </div>

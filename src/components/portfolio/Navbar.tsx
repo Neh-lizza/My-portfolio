@@ -5,8 +5,8 @@ import useActiveSection from "@/hooks/useActiveSection";
 
 const navLinks = [
   { label: "About", href: "#about", id: "about" },
+  { label: "Skills", href: "#skills", id: "skills" },
   { label: "Work", href: "#work", id: "work" },
-  { label: "Experience", href: "#experience", id: "experience" },
   { label: "Contact", href: "#contact", id: "contact" },
 ];
 
@@ -43,8 +43,8 @@ const Navbar = () => {
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
 
         {/* Logo */}
-        <a href="#" className="text-xl font-bold text-gradient">
-          Neh<span className="text-primary">.</span>
+        <a href="#" className="text-xl font-bold text-white flex items-center gap-0.5">
+          <span style={{ color: "#233D4D" }}>Neh.</span>
         </a>
 
         {/* Desktop nav */}
