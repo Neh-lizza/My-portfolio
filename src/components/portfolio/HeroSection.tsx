@@ -180,7 +180,7 @@ const HeroSection = () => {
                   className="mt-4 lg:hidden"
                 >
                   <a
-                    href="https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/view?usp=sharing"
+                    href="https://drive.google.com/uc?export=download&id=1sj6HkpAChLDbM2t_sHFrAj6ejX-kNl96"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group relative inline-flex items-center gap-2 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.15)] text-white text-[12px] sm:text-[13px] font-medium tracking-wide backdrop-blur-md transition-all duration-300 hover:border-[#233D4D] hover:bg-[rgba(35,61,77,0.2)] hover:shadow-[0_0_20px_rgba(35,61,77,0.4)]"
@@ -250,7 +250,7 @@ const HeroSection = () => {
               {/* Desktop Download CV Button placed below See My Work & Let's Talk */}
               <div className="hidden lg:block w-full mt-2">
                 <a
-                  href="https://drive.google.com/file/d/YOUR_GOOGLE_DRIVE_FILE_ID/view?usp=sharing"
+                  href="https://drive.google.com/uc?export=download&id=1sj6HkpAChLDbM2t_sHFrAj6ejX-kNl96"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[rgba(255,255,255,0.03)] border border-[rgba(255,255,255,0.15)] text-white text-[13px] font-medium tracking-wide backdrop-blur-md transition-all duration-300 hover:border-[#233D4D] hover:bg-[rgba(35,61,77,0.2)] hover:shadow-[0_0_20px_rgba(35,61,77,0.4)]"
