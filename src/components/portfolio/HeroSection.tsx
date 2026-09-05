@@ -5,7 +5,7 @@ import {
   useTransform,
   useSpring,
 } from "framer-motion";
-import { ArrowDown, FileText } from "lucide-react";
+import { FileText } from "lucide-react";
 
 /* ── Film grain noise canvas ───────────────────────────────────────────── */
 const Noise = () => {
@@ -186,7 +186,6 @@ const HeroSection = () => {
                   >
                     <FileText size={15} className="text-white/70 group-hover:text-white transition-colors" />
                     <span>View CV</span>
-                    <ArrowDown size={13} className="text-white/50 group-hover:text-white group-hover:translate-y-0.5 transition-all" />
                   </a>
                 </motion.div>
               </div>
@@ -256,7 +255,6 @@ const HeroSection = () => {
                 >
                   <FileText size={15} className="text-white/70 group-hover:text-white transition-colors" />
                   <span>View CV</span>
-                  <ArrowDown size={13} className="text-white/50 group-hover:text-white group-hover:translate-y-0.5 transition-all" />
                 </a>
               </div>
             </motion.div>
@@ -298,17 +296,6 @@ const HeroSection = () => {
 
         </div>
       </motion.div>
-
-      <motion.a
-        href="#work"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.2 }}
-        className="absolute bottom-5 sm:bottom-7 left-1/2 -translate-x-1/2 hover:text-primary transition-colors z-20"
-        style={{ color: "rgba(255,255,255,0.4)" }}
-      >
-        <ArrowDown size={18} className="animate-bounce" />
-      </motion.a>
 
       <style>{`
         .hero-dot-bg {
