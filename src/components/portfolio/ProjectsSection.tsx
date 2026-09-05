@@ -93,40 +93,40 @@ const projects: Project[] = [
     theGoal: "To streamline the recovery of lost items, found objects, and missing persons across Cameroon using automated AI matching algorithms and verified peer-to-peer communication.",
     theSystem: "Built with Next.js 16 App Router, TypeScript, and Supabase (PostgreSQL with PostGIS and pgvector), integrating Hugging Face CLIP/BART models, Mapbox GL JS, OneSignal, and MeSomb payments.",
     images: [
-      "https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1200&q=80"
+      "b2u1.jpeg",
+      "b2u2.jpeg",
+      "b2u3.jpeg"
     ],
     techStack: ["Next.js 16", "TypeScript", "Supabase", "PostGIS", "Tailwind CSS"],
     liveUrl: "https://back2u-cmr.vercel.app"
   },
   {
-    id: "02",
-    number: "02 / 06",
-    date: "Current Build",
-    subtitle: "Portfolio & Interactive Showcase",
-    title: "Personal Portfolio v2: Immersive Case Studies",
-    description: "A high-performance personal portfolio featuring interactive full-screen case study modals, live web experience integration via iframes, film grain noise aesthetics, and smooth Framer Motion transitions.",
-    theGoal: "To craft an elite, developer-centric digital portfolio that merges editorial UI typography with interactive live project showcases.",
-    theSystem: "Built with React, TypeScript, Tailwind CSS, and Framer Motion, utilizing modular architecture and responsive glassmorphism design.",
-    images: [
-      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80"
-    ],
-    techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    liveUrl: "#"
-  },
+  id: "02",
+  number: "02 / 06",
+  date: "Current Build",
+  subtitle: "Portfolio & Interactive Showcase",
+  title: "Personal Portfolio v2: Solutions, Not Just Screens",
+  description:
+    "My portfolio focused on real solutions: secure, scalable systems across web, AI, and data. Features interactive case studies, live project previews, and a clean, no‑fluff interface.",
+  theGoal:
+    "To show how I solve problems end‑to‑end — from idea to production‑ready systems",
+  theSystem:
+    "Built with React, TypeScript, Tailwind CSS, and Framer Motion.",
+  images: ["about.png"],
+  techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+  liveUrl: "https://neh-lizza.vercel.app/"
+},
   {
     id: "03",
     number: "03 / 06",
-    date: "CEC418 Course Project",
+    date: "2026",
     subtitle: "UniSell: Student Secondhand Marketplace",
-    title: "UniSell: Campus Trading & AI Safeguards",
-    description: "A full-stack secondhand marketplace for university students in Cameroon targeting campus living items with integrated AI price suggestions and fraud detection.",
-    theGoal: "To solve informal trading friction on WhatsApp groups by providing price guidance, keyword search, automated fraud protection, and affordable listings.",
+    title: "UniSell: Campus Trading ",
+    description: "A full‑stack marketplace for university students in Cameroon to buy and sell campus items — beds, fridges, fans, electronics, textbooks, and more. Replaces chaotic WhatsApp trading with search, structure, and basic fraud protection.",
+    theGoal: "To give students a simple, affordable place to trade secondhand goods without paying channel owners just to post, and without getting lost in endless WhatsApp threads.",
     theSystem: "Built with Next.js 16, TypeScript, Tailwind CSS v4, and Supabase, featuring decoupled ML models (Random Forest, Isolation Forest, TF-IDF recommendations) running via Google Colab.",
     images: [
-      "https://images.unsplash.com/photo-1555421689-491a97ff2040?auto=format&fit=crop&w=1200&q=80",
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1200&q=80"
+      "unisell1.PNG"
     ],
     techStack: ["Next.js 16", "TypeScript", "Supabase", "Python", "Docker"],
     liveUrl: "https://unisell-coral.vercel.app"
@@ -185,8 +185,8 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:Georgia,serif;backg
   <div class="scene" id="scene1" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;">
     <div class="hbd-line1">Happy Birthday</div>
     <div class="hbd-line2" style="margin-top:10px;">Mummy Kate</div>
-    <p style="color:rgba(127,249,255,0.6);margin-top:15px;font-size:14px;letter-spacing:2px;">✦ A Special Tribute from Nene ✦</p>
-    <button class="star-btn" onclick="alert('Happy Birthday Mummy Kate! Wishing you endless joy and blessings.')">Celebrate Now</button>
+    <p style="color:rgba(127,249,255,0.6);margin-top:15px;font-size:14px;letter-spacing:2px;">✦ A Special Tribute from Nene to Mummy Kate</p>
+
   </div>
 </div>
 <script>
